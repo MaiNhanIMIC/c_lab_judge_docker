@@ -1,0 +1,801 @@
+{
+  "session": 18,
+  "title": "Buổi 18: Smart Pointers & Exception Handling",
+  "problems": [
+    {
+      "id": "s18_p1",
+      "session": 18,
+      "title": "1. Bài 1 (Smart Pointers & Exception): Tính tổng tích lũy",
+      "difficulty": "Dễ",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Thực hành Kiểm tra ngoại lệ & quản lý tài nguyên an toàn: viết hàm <code>int chiaAnToan1(int a[], int n)</code> trả về tổng các phần tử dương.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng phần tử > 0",
+      "hint": "Cộng a[i] nếu a[i] > 0",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan1(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan1(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i++) if (a[i] > 0) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={-2, 5, 3}; TEST_ASSERT_EQUAL_INT(8, chiaAnToan1(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={-1, -4}; TEST_ASSERT_EQUAL_INT(0, chiaAnToan1(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={10}; TEST_ASSERT_EQUAL_INT(10, chiaAnToan1(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p2",
+      "session": 18,
+      "title": "2. Bài 2 (Smart Pointers & Exception): Cập nhật giá trị an toàn",
+      "difficulty": "Dễ",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan2(int x, int y)</code> trả về <code>x / y</code> nếu <code>y != 0</code>, ngược lại trả về <code>-1</code> (tránh lỗi ngoại lệ).</p>",
+      "inputSpec": "int x, int y",
+      "outputSpec": "x/y hoặc -1",
+      "hint": "Kiểm tra y == 0 trước khi chia",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan2(int x, int y) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan2(int x, int y) {\n    if (y == 0) return -1;\n    return x / y;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, chiaAnToan2(10, 2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(-1, chiaAnToan2(10, 0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, chiaAnToan2(0, 5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p3",
+      "session": 18,
+      "title": "3. Bài 3 (Smart Pointers & Exception): Đếm phần tử thỏa điều kiện",
+      "difficulty": "Dễ",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan3(int a[], int n, int k)</code> đếm số phần tử >= <code>k</code>.</p>",
+      "inputSpec": "int a[], int n, int k",
+      "outputSpec": "Số lượng >= k",
+      "hint": "Duyệt mảng và đếm",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan3(int a[], int n, int k) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan3(int a[], int n, int k) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] >= k) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 5, 8, 3}; TEST_ASSERT_EQUAL_INT(2, chiaAnToan3(a, 4, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2}; TEST_ASSERT_EQUAL_INT(0, chiaAnToan3(b, 2, 10));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={5, 5}; TEST_ASSERT_EQUAL_INT(2, chiaAnToan3(c, 2, 5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p4",
+      "session": 18,
+      "title": "4. Bài 4 (Smart Pointers & Exception): Giới hạn giá trị (Clamp)",
+      "difficulty": "Dễ",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan4(int val, int mn, int mx)</code> giữ <code>val</code> trong đoạn <code>[mn, mx]</code>.</p>",
+      "inputSpec": "val, mn, mx",
+      "outputSpec": "Giá trị đã clamp",
+      "hint": "Nếu < mn trả về mn, > mx trả về mx",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan4(int val, int mn, int mx) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan4(int val, int mn, int mx) {\n    if (val < mn) return mn;\n    if (val > mx) return mx;\n    return val;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(10, chiaAnToan4(15, 0, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, chiaAnToan4(-5, 0, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, chiaAnToan4(5, 0, 10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p5",
+      "session": 18,
+      "title": "5. Bài 5 (Smart Pointers & Exception): Biến đổi mảng tại chỗ",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>void chiaAnToan5(int a[], int n, int delta)</code> cộng thêm <code>delta</code> vào mỗi phần tử.</p>",
+      "inputSpec": "int a[], int n, int delta",
+      "outputSpec": "Mảng a cập nhật",
+      "hint": "a[i] += delta",
+      "starterCode": "#include <stdio.h>\n\nvoid chiaAnToan5(int a[], int n, int delta) {\n    \n}",
+      "solutionCode": "#include <stdio.h>\n\nvoid chiaAnToan5(int a[], int n, int delta) {\n    for (int i = 0; i < n; i++) a[i] += delta;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 2, 3}; chiaAnToan5(a, 3, 5); TEST_ASSERT_EQUAL_INT(6, a[0]); TEST_ASSERT_EQUAL_INT(8, a[2]);",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={10}; chiaAnToan5(b, 1, -3); TEST_ASSERT_EQUAL_INT(7, b[0]);",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={0, 0}; chiaAnToan5(c, 2, 1); TEST_ASSERT_EQUAL_INT(1, c[1]);",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p6",
+      "session": 18,
+      "title": "6. Bài 6 (Smart Pointers & Exception): Đếm phần tử duy nhất",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan6(int a[], int n)</code> đếm số phần tử xuất hiện đúng 1 lần trong mảng.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số phần tử duy nhất",
+      "hint": "Dùng 2 vòng lặp đếm tần suất",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan6(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan6(int a[], int n) {\n    int res = 0;\n    for (int i = 0; i < n; i++) {\n        int cnt = 0;\n        for (int j = 0; j < n; j++) if (a[i] == a[j]) cnt++;\n        if (cnt == 1) res++;\n    }\n    return res;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 2, 2, 3}; TEST_ASSERT_EQUAL_INT(2, chiaAnToan6(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={5, 5}; TEST_ASSERT_EQUAL_INT(0, chiaAnToan6(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={7}; TEST_ASSERT_EQUAL_INT(1, chiaAnToan6(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p7",
+      "session": 18,
+      "title": "7. Bài 7 (Smart Pointers & Exception): Tìm phần tử xuất hiện nhiều nhất",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan7(int a[], int n)</code> trả về giá trị xuất hiện nhiều lần nhất.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Giá trị phổ biến nhất",
+      "hint": "Đếm tần suất từng phần tử",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan7(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan7(int a[], int n) {\n    int bestVal = a[0], bestCnt = 0;\n    for (int i = 0; i < n; i++) {\n        int cnt = 0;\n        for (int j = 0; j < n; j++) if (a[i] == a[j]) cnt++;\n        if (cnt > bestCnt) { bestCnt = cnt; bestVal = a[i]; }\n    }\n    return bestVal;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 3, 2, 3, 3}; TEST_ASSERT_EQUAL_INT(3, chiaAnToan7(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={4, 4, 1}; TEST_ASSERT_EQUAL_INT(4, chiaAnToan7(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={9}; TEST_ASSERT_EQUAL_INT(9, chiaAnToan7(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p8",
+      "session": 18,
+      "title": "8. Bài 8 (Smart Pointers & Exception): Tìm kiếm nhị phân",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Cho mảng <code>a[]</code> đã sắp xếp tăng dần. Viết hàm <code>int chiaAnToan8(int a[], int n, int x)</code> tìm vị trí của x bằng Binary Search (-1 nếu không có).</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Chỉ số hoặc -1",
+      "hint": "Chia đôi khoảng [l, r]",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan8(int a[], int n, int x) {\n    return -1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan8(int a[], int n, int x) {\n    int l = 0, r = n - 1;\n    while (l <= r) {\n        int m = (l + r) / 2;\n        if (a[m] == x) return m;\n        if (a[m] < x) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 3, 5, 7, 9}; TEST_ASSERT_EQUAL_INT(2, chiaAnToan8(a, 5, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 3, 5}; TEST_ASSERT_EQUAL_INT(-1, chiaAnToan8(b, 3, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={10}; TEST_ASSERT_EQUAL_INT(0, chiaAnToan8(c, 1, 10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p9",
+      "session": 18,
+      "title": "9. Bài 9 (Smart Pointers & Exception): Gộp hai mảng đã sắp xếp",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Gộp 2 mảng tăng dần <code>a[n]</code> và <code>b[m]</code> vào mảng <code>out[]</code> và trả về tổng số phần tử <code>n + m</code>.</p>",
+      "inputSpec": "a, n, b, m, out",
+      "outputSpec": "n + m",
+      "hint": "Dùng 2 con trỏ i, j",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan9(int a[], int n, int b[], int m, int out[]) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan9(int a[], int n, int b[], int m, int out[]) {\n    int i = 0, j = 0, k = 0;\n    while (i < n && j < m) {\n        if (a[i] <= b[j]) out[k++] = a[i++];\n        else out[k++] = b[j++];\n    }\n    while (i < n) out[k++] = a[i++];\n    while (j < m) out[k++] = b[j++];\n    return k;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1,4}; int b[]={2,3}; int out[4]; int k=chiaAnToan9(a,2,b,2,out); TEST_ASSERT_EQUAL_INT(4, k); TEST_ASSERT_EQUAL_INT(2, out[1]);",
+          "hidden": false
+        },
+        {
+          "code": "int a[]={5}; int b[]={1}; int out[2]; chiaAnToan9(a,1,b,1,out); TEST_ASSERT_EQUAL_INT(1, out[0]);",
+          "hidden": false
+        },
+        {
+          "code": "int a[]={1,2}; int b[]={3}; int out[3]; TEST_ASSERT_EQUAL_INT(3, chiaAnToan9(a,2,b,1,out));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p10",
+      "session": 18,
+      "title": "10. Bài 10 (Smart Pointers & Exception): Đếm cặp có tổng bằng K",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int chiaAnToan10(int a[], int n, int k)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> sao cho <code>a[i] + a[j] == k</code>.</p>",
+      "inputSpec": "int a[], int n, int k",
+      "outputSpec": "Số cặp thỏa mãn",
+      "hint": "Duyệt i < j kiểm tra a[i] + a[j] == k",
+      "starterCode": "#include <stdio.h>\n\nint chiaAnToan10(int a[], int n, int k) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint chiaAnToan10(int a[], int n, int k) {\n    int c = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = i + 1; j < n; j++) if (a[i] + a[j] == k) c++;\n    }\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 5, 7, -1, 5}; TEST_ASSERT_EQUAL_INT(3, chiaAnToan10(a, 5, 6));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, chiaAnToan10(b, 3, 10));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={2, 2, 2}; TEST_ASSERT_EQUAL_INT(3, chiaAnToan10(c, 3, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p11",
+      "session": 18,
+      "title": "11. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_11(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai18_11(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_11(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai18_11(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai18_11(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai18_11(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p12",
+      "session": 18,
+      "title": "12. Tính tích các chữ số của N",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_12(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai18_12(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_12(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai18_12(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_12(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai18_12(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p13",
+      "session": 18,
+      "title": "13. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_13(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai18_13(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_13(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai18_13(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai18_13(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai18_13(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p14",
+      "session": 18,
+      "title": "14. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_14(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai18_14(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_14(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai18_14(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai18_14(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai18_14(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p15",
+      "session": 18,
+      "title": "15. Tính biểu thức tuyến tính (Smart Pointers & Exception)",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_15(int x)</code> trả về <code>5 * x + 2</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "5*x + 2",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai18_15(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_15(int x) {\n    return 5 * x + 2;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(12, bai18_15(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai18_15(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(52, bai18_15(10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p16",
+      "session": 18,
+      "title": "16. Kiểm tra chia hết cho 5",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_16(int n)</code> trả về 1 nếu <code>n</code> chia hết cho 5, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Kiểm tra n % 5 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai18_16(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_16(int n) {\n    return n % 5 == 0 ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai18_16(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_16(16));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai18_16(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p17",
+      "session": 18,
+      "title": "17. Bình phương và cộng 4",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_17(int n)</code> trả về <code>n * n + 4</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "n*n + 4",
+      "hint": "Tính n * n rồi cộng",
+      "starterCode": "#include <stdio.h>\n\nint bai18_17(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_17(int n) {\n    return n * n + 4;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai18_17(3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, bai18_17(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(29, bai18_17(-5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p18",
+      "session": 18,
+      "title": "18. Hiệu tuyệt đối hai số",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_18(int a, int b)</code> trả về <code>|a - b|</code>.</p>",
+      "inputSpec": "int a, int b",
+      "outputSpec": "|a - b|",
+      "hint": "So sánh a > b",
+      "starterCode": "#include <stdio.h>\n\nint bai18_18(int a, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_18(int a, int b) {\n    return a > b ? a - b : b - a;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai18_18(3, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai18_18(9, 4));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_18(6, 6));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p19",
+      "session": 18,
+      "title": "19. Tổng các bội của 5 từ 1 đến N",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_19(int n)</code> tính tổng các số chia hết cho 5 trong [1, n].</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tổng bội số",
+      "hint": "Dùng for kiểm tra i % 5 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai18_19(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_19(int n) {\n    int s = 0;\n    for (int i = 1; i <= n; i++) if (i % 5 == 0) s += i;\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(15, bai18_19(10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_19(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(50, bai18_19(20));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p20",
+      "session": 18,
+      "title": "20. Đếm số phần tử lớn hơn 7 trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_20(int a[], int n)</code> đếm số phần tử <code>> 7</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số phần tử > 7",
+      "hint": "Duyệt mảng và đếm",
+      "starterCode": "#include <stdio.h>\n\nint bai18_20(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_20(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] > 7) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 7, 9, 12}; TEST_ASSERT_EQUAL_INT(2, bai18_20(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 1}; TEST_ASSERT_EQUAL_INT(0, bai18_20(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={8}; TEST_ASSERT_EQUAL_INT(1, bai18_20(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p21",
+      "session": 18,
+      "title": "21. Tính lũy thừa x^5",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_21(int x)</code> tính <code>x</code> mũ 5 bằng vòng lặp.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "x^5",
+      "hint": "Nhân x đúng 5 lần",
+      "starterCode": "#include <stdio.h>\n\nint bai18_21(int x) {\n    return 1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_21(int x) {\n    int r = 1;\n    for (int i = 0; i < 5; i++) r *= x;\n    return r;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(32, bai18_21(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai18_21(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(243, bai18_21(3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p22",
+      "session": 18,
+      "title": "22. Tìm chữ số lớn nhất của số nguyên dương",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_22(int n)</code> trả về chữ số lớn nhất trong số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Chữ số lớn nhất",
+      "hint": "Tách từng chữ số bằng % 10 và / 10",
+      "starterCode": "#include <stdio.h>\n\nint bai18_22(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_22(int n) {\n    int m = 0;\n    while (n > 0) { int d = n % 10; if (d > m) m = d; n /= 10; }\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai18_22(3921));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai18_22(500));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai18_22(7));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p23",
+      "session": 18,
+      "title": "23. Tổng các phần tử ở vị trí chẵn",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_23(int a[], int n)</code> tính tổng các <code>a[i]</code> với <code>i</code> chẵn (0, 2, 4...).</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng vị trí chẵn",
+      "hint": "Bước nhảy i += 2",
+      "starterCode": "#include <stdio.h>\n\nint bai18_23(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_23(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i += 2) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 10, 2, 20, 3}; TEST_ASSERT_EQUAL_INT(6, bai18_23(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={5, 9}; TEST_ASSERT_EQUAL_INT(5, bai18_23(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={7}; TEST_ASSERT_EQUAL_INT(7, bai18_23(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p24",
+      "session": 18,
+      "title": "24. Kiểm tra số đối xứng (Palindrome)",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_24(int n)</code> trả về 1 nếu số nguyên dương <code>n</code> đọc xuôi ngược giống nhau, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Đảo ngược số rồi so sánh với ban đầu",
+      "starterCode": "#include <stdio.h>\n\nint bai18_24(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_24(int n) {\n    int orig = n, rev = 0;\n    while (n > 0) { rev = rev * 10 + n % 10; n /= 10; }\n    return orig == rev ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai18_24(121));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_24(123));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai18_24(1221));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p25",
+      "session": 18,
+      "title": "25. Đếm số lần xuất hiện của X trong mảng",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_25(int a[], int n, int x)</code> đếm số lần <code>x</code> xuất hiện.</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Số lần xuất hiện",
+      "hint": "Duyệt a[i] == x",
+      "starterCode": "#include <stdio.h>\n\nint bai18_25(int a[], int n, int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_25(int a[], int n, int x) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] == x) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 5, 2, 8, 2}; TEST_ASSERT_EQUAL_INT(3, bai18_25(a, 5, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai18_25(b, 3, 9));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={4}; TEST_ASSERT_EQUAL_INT(1, bai18_25(c, 1, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p26",
+      "session": 18,
+      "title": "26. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_26(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai18_26(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_26(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai18_26(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai18_26(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai18_26(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p27",
+      "session": 18,
+      "title": "27. Tính tích các chữ số của N",
+      "difficulty": "Khó",
+      "category": "Smart Pointers & Exception",
+      "description": "<p>Viết hàm <code>int bai18_27(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai18_27(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai18_27(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai18_27(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai18_27(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai18_27(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s18_p28",
+      "session": 18,
+      "type": "quiz",
+      "title": "28. Trắc nghiệm đọc code: Vòng lặp & Điều kiện (#28)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra kết quả gì?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int s = 0;\nfor (int i = 1; i <= 6; i++) {\n    if (i == 2) continue;\n    s += i;\n}\nprintf(\"%d\", s);",
+      "options": [
+        "21",
+        "19",
+        "6",
+        "0"
+      ],
+      "correctIndex": 1,
+      "explanation": "continue bỏ qua bước i == 2, nên tổng giảm đi 2 còn 19.",
+      "testCases": []
+    },
+    {
+      "id": "s18_p29",
+      "session": 18,
+      "type": "quiz",
+      "title": "29. Trắc nghiệm đọc code: Bộ nhớ & Con trỏ (#29)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra giá trị nào?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int v = 9;\nint *p = &v;\n*p *= 2;\nprintf(\"%d\", v);",
+      "options": [
+        "9",
+        "18",
+        "4",
+        "Lỗi biên dịch"
+      ],
+      "correctIndex": 1,
+      "explanation": "p trỏ tới v nên *p *= 2 nhân đôi giá trị v thành 18.",
+      "testCases": []
+    },
+    {
+      "id": "s18_p30",
+      "session": 18,
+      "type": "quiz",
+      "title": "30. Trắc nghiệm đọc code: Toán tử & Biến (#30)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra giá trị nào?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int x = 2, y = 3;\nint z = (x++ * 2) + y;\nprintf(\"%d %d\", x, z);",
+      "options": [
+        "3 7",
+        "2 7",
+        "3 9",
+        "4 7"
+      ],
+      "correctIndex": 0,
+      "explanation": "x++ dùng giá trị cũ (2) để tính z = 2*2 + 3 = 7, sau đó x tăng lên 3.",
+      "testCases": []
+    }
+  ]
+}

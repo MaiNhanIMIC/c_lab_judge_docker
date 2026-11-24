@@ -1,0 +1,801 @@
+{
+  "session": 8,
+  "title": "Buổi 8: Union, Enum & Tối ưu hằng số",
+  "problems": [
+    {
+      "id": "s8_p1",
+      "session": 8,
+      "title": "1. Sử dụng Enum cho ngày trong tuần",
+      "difficulty": "Dễ",
+      "category": "Union & Enum",
+      "description": "<p>Định nghĩa <code>enum Thu { MON=2, TUE, WED, THU, FRI, SAT, SUN };</code>. Viết hàm trả về 1 nếu là cuối tuần (SAT hoặc SUN), ngược lại 0.</p>",
+      "inputSpec": "int thu",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Kiểm tra thu == 7 || thu == 8",
+      "starterCode": "#include <stdio.h>\n\nenum Thu { MON=2, TUE, WED, THU, FRI, SAT, SUN };\n\nint laCuoiTuan(int thu) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nenum Thu { MON=2, TUE, WED, THU, FRI, SAT, SUN };\n\nint laCuoiTuan(int thu) {\n    return (thu == SAT || thu == SUN) ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laCuoiTuan(7));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laCuoiTuan(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laCuoiTuan(8));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p2",
+      "session": 8,
+      "title": "2. Enum trạng thái đơn hàng",
+      "difficulty": "Dễ",
+      "category": "Union & Enum",
+      "description": "<p>Định nghĩa <code>enum Status { PENDING=0, SHIPPING=1, DONE=2, CANCEL=3 };</code>. Trả về 1 nếu đơn có thể hủy (PENDING), ngược lại 0.</p>",
+      "inputSpec": "int st",
+      "outputSpec": "1 hoặc 0",
+      "hint": "st == PENDING",
+      "starterCode": "#include <stdio.h>\n\nenum Status { PENDING=0, SHIPPING=1, DONE=2, CANCEL=3 };\n\nint coTheHuy(int st) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nenum Status { PENDING=0, SHIPPING=1, DONE=2, CANCEL=3 };\n\nint coTheHuy(int st) {\n    return st == PENDING ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, coTheHuy(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, coTheHuy(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, coTheHuy(1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p3",
+      "session": 8,
+      "title": "3. Đóng gói màu RGB vào 1 số 32-bit",
+      "difficulty": "Dễ",
+      "category": "Union & Enum",
+      "description": "<p>Giống Union/Bitfield: ghép 3 thành phần <code>r, g, b</code> (0..255) thành <code>(r << 16) | (g << 8) | b</code>.</p>",
+      "inputSpec": "int r, int g, int b",
+      "outputSpec": "Mã màu 24-bit",
+      "hint": "Dùng dịch bit << và OR |",
+      "starterCode": "#include <stdio.h>\n\nint dongGoiRGB(int r, int g, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint dongGoiRGB(int r, int g, int b) {\n    return (r << 16) | (g << 8) | b;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(65536, dongGoiRGB(1, 0, 0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(257, dongGoiRGB(0, 1, 1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, dongGoiRGB(0, 0, 0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p4",
+      "session": 8,
+      "title": "4. Tách kênh màu Green từ mã RGB",
+      "difficulty": "Dễ",
+      "category": "Union & Enum",
+      "description": "<p>Từ mã màu <code>rgb</code> đã đóng gói, tách ra giá trị kênh Green (bit 8..15).</p>",
+      "inputSpec": "int rgb",
+      "outputSpec": "Giá trị Green (0..255)",
+      "hint": "(rgb >> 8) & 255",
+      "starterCode": "#include <stdio.h>\n\nint layGreen(int rgb) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint layGreen(int rgb) {\n    return (rgb >> 8) & 255;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(10, layGreen((5<<16)|(10<<8)|20));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(255, layGreen(65280));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, layGreen(255));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p5",
+      "session": 8,
+      "title": "5. Tách byte thấp và byte cao",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Cho số nguyên 16-bit <code>x</code>, trả về tổng của byte thấp (<code>x & 255</code>) và byte cao (<code>(x >> 8) & 255</code>).</p>",
+      "inputSpec": "int x",
+      "outputSpec": "Tổng 2 byte",
+      "hint": "(x & 255) + ((x >> 8) & 255)",
+      "starterCode": "#include <stdio.h>\n\nint tongHaiByte(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint tongHaiByte(int x) {\n    return (x & 255) + ((x >> 8) & 255);\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, tongHaiByte(258));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(10, tongHaiByte(10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(510, tongHaiByte(65535));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p6",
+      "session": 8,
+      "title": "6. Enum quyền truy cập (Bitmask)",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>READ=1, WRITE=2, EXEC=4. Kiểm tra tập quyền <code>mask</code> có quyền <code>perm</code> hay không.</p>",
+      "inputSpec": "int mask, int perm",
+      "outputSpec": "1 hoặc 0",
+      "hint": "(mask & perm) == perm",
+      "starterCode": "#include <stdio.h>\n\nenum Perm { READ=1, WRITE=2, EXEC=4 };\n\nint coQuyen(int mask, int perm) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nenum Perm { READ=1, WRITE=2, EXEC=4 };\n\nint coQuyen(int mask, int perm) {\n    return (mask & perm) == perm ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, coQuyen(3, 2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, coQuyen(1, 2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, coQuyen(7, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p7",
+      "session": 8,
+      "title": "7. Máy trạng thái đèn giao thông",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Enum RED=0, GREEN=1, YELLOW=2. Trả về trạng thái tiếp theo: RED->GREEN->YELLOW->RED.</p>",
+      "inputSpec": "int cur",
+      "outputSpec": "Trạng thái kế tiếp",
+      "hint": "(cur + 1) % 3",
+      "starterCode": "#include <stdio.h>\n\nenum Light { RED=0, GREEN=1, YELLOW=2 };\n\nint nextLight(int cur) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nenum Light { RED=0, GREEN=1, YELLOW=2 };\n\nint nextLight(int cur) {\n    return (cur + 1) % 3;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, nextLight(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, nextLight(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, nextLight(2));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p8",
+      "session": 8,
+      "title": "8. Chuyển đổi Big-Endian <-> Little-Endian (16-bit)",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Đổi chỗ 2 byte của số 16-bit không dấu <code>x</code>: <code>((x & 255) << 8) | ((x >> 8) & 255)</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "Giá trị sau khi swap byte",
+      "hint": "Dùng dịch bit và & 255",
+      "starterCode": "#include <stdio.h>\n\nint swapByte16(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint swapByte16(int x) {\n    return ((x & 255) << 8) | ((x >> 8) & 255);\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(258, swapByte16(513));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(256, swapByte16(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, swapByte16(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p9",
+      "session": 8,
+      "title": "9. Đếm số bit 1 trong số nguyên",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Đếm số bit bằng 1 trong biểu diễn nhị phân của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Số bit 1",
+      "hint": "Dùng while(n>0) { cnt += n&1; n >>= 1; }",
+      "starterCode": "#include <stdio.h>\n\nint demBit1(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint demBit1(int n) {\n    int c = 0;\n    while (n > 0) { c += (n & 1); n = n >> 1; }\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, demBit1(7));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, demBit1(16));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, demBit1(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p10",
+      "session": 8,
+      "title": "10. Kiểm tra số bit khác nhau (Hamming Distance)",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Tính khoảng cách Hamming (số bit khác nhau) giữa hai số nguyên dương <code>a</code> và <code>b</code>.</p>",
+      "inputSpec": "int a, int b",
+      "outputSpec": "Số bit khác nhau",
+      "hint": "Đếm số bit 1 của a ^ b",
+      "starterCode": "#include <stdio.h>\n\nint hamming(int a, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint hamming(int a, int b) {\n    int x = a ^ b, c = 0;\n    while (x > 0) { c += (x & 1); x = x >> 1; }\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, hamming(1, 4));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, hamming(9, 9));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, hamming(15, 0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p11",
+      "session": 8,
+      "title": "11. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_11(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai8_11(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_11(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai8_11(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai8_11(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai8_11(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p12",
+      "session": 8,
+      "title": "12. Tính tích các chữ số của N",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_12(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai8_12(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_12(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai8_12(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_12(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai8_12(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p13",
+      "session": 8,
+      "title": "13. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_13(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai8_13(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_13(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai8_13(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai8_13(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai8_13(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p14",
+      "session": 8,
+      "title": "14. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_14(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai8_14(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_14(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai8_14(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai8_14(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai8_14(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p15",
+      "session": 8,
+      "title": "15. Tính biểu thức tuyến tính (Union & Enum)",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_15(int x)</code> trả về <code>5 * x + 2</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "5*x + 2",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai8_15(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_15(int x) {\n    return 5 * x + 2;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(12, bai8_15(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai8_15(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(52, bai8_15(10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p16",
+      "session": 8,
+      "title": "16. Kiểm tra chia hết cho 5",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_16(int n)</code> trả về 1 nếu <code>n</code> chia hết cho 5, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Kiểm tra n % 5 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai8_16(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_16(int n) {\n    return n % 5 == 0 ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai8_16(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_16(16));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai8_16(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p17",
+      "session": 8,
+      "title": "17. Bình phương và cộng 4",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_17(int n)</code> trả về <code>n * n + 4</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "n*n + 4",
+      "hint": "Tính n * n rồi cộng",
+      "starterCode": "#include <stdio.h>\n\nint bai8_17(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_17(int n) {\n    return n * n + 4;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai8_17(3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, bai8_17(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(29, bai8_17(-5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p18",
+      "session": 8,
+      "title": "18. Hiệu tuyệt đối hai số",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_18(int a, int b)</code> trả về <code>|a - b|</code>.</p>",
+      "inputSpec": "int a, int b",
+      "outputSpec": "|a - b|",
+      "hint": "So sánh a > b",
+      "starterCode": "#include <stdio.h>\n\nint bai8_18(int a, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_18(int a, int b) {\n    return a > b ? a - b : b - a;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai8_18(3, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai8_18(9, 4));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_18(6, 6));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p19",
+      "session": 8,
+      "title": "19. Tổng các bội của 5 từ 1 đến N",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_19(int n)</code> tính tổng các số chia hết cho 5 trong [1, n].</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tổng bội số",
+      "hint": "Dùng for kiểm tra i % 5 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai8_19(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_19(int n) {\n    int s = 0;\n    for (int i = 1; i <= n; i++) if (i % 5 == 0) s += i;\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(15, bai8_19(10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_19(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(50, bai8_19(20));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p20",
+      "session": 8,
+      "title": "20. Đếm số phần tử lớn hơn 7 trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_20(int a[], int n)</code> đếm số phần tử <code>> 7</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số phần tử > 7",
+      "hint": "Duyệt mảng và đếm",
+      "starterCode": "#include <stdio.h>\n\nint bai8_20(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_20(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] > 7) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 7, 9, 12}; TEST_ASSERT_EQUAL_INT(2, bai8_20(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 1}; TEST_ASSERT_EQUAL_INT(0, bai8_20(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={8}; TEST_ASSERT_EQUAL_INT(1, bai8_20(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p21",
+      "session": 8,
+      "title": "21. Tính lũy thừa x^5",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_21(int x)</code> tính <code>x</code> mũ 5 bằng vòng lặp.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "x^5",
+      "hint": "Nhân x đúng 5 lần",
+      "starterCode": "#include <stdio.h>\n\nint bai8_21(int x) {\n    return 1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_21(int x) {\n    int r = 1;\n    for (int i = 0; i < 5; i++) r *= x;\n    return r;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(32, bai8_21(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai8_21(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(243, bai8_21(3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p22",
+      "session": 8,
+      "title": "22. Tìm chữ số lớn nhất của số nguyên dương",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_22(int n)</code> trả về chữ số lớn nhất trong số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Chữ số lớn nhất",
+      "hint": "Tách từng chữ số bằng % 10 và / 10",
+      "starterCode": "#include <stdio.h>\n\nint bai8_22(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_22(int n) {\n    int m = 0;\n    while (n > 0) { int d = n % 10; if (d > m) m = d; n /= 10; }\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai8_22(3921));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai8_22(500));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai8_22(7));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p23",
+      "session": 8,
+      "title": "23. Tổng các phần tử ở vị trí chẵn",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_23(int a[], int n)</code> tính tổng các <code>a[i]</code> với <code>i</code> chẵn (0, 2, 4...).</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng vị trí chẵn",
+      "hint": "Bước nhảy i += 2",
+      "starterCode": "#include <stdio.h>\n\nint bai8_23(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_23(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i += 2) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 10, 2, 20, 3}; TEST_ASSERT_EQUAL_INT(6, bai8_23(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={5, 9}; TEST_ASSERT_EQUAL_INT(5, bai8_23(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={7}; TEST_ASSERT_EQUAL_INT(7, bai8_23(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p24",
+      "session": 8,
+      "title": "24. Kiểm tra số đối xứng (Palindrome)",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_24(int n)</code> trả về 1 nếu số nguyên dương <code>n</code> đọc xuôi ngược giống nhau, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Đảo ngược số rồi so sánh với ban đầu",
+      "starterCode": "#include <stdio.h>\n\nint bai8_24(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_24(int n) {\n    int orig = n, rev = 0;\n    while (n > 0) { rev = rev * 10 + n % 10; n /= 10; }\n    return orig == rev ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai8_24(121));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_24(123));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai8_24(1221));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p25",
+      "session": 8,
+      "title": "25. Đếm số lần xuất hiện của X trong mảng",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_25(int a[], int n, int x)</code> đếm số lần <code>x</code> xuất hiện.</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Số lần xuất hiện",
+      "hint": "Duyệt a[i] == x",
+      "starterCode": "#include <stdio.h>\n\nint bai8_25(int a[], int n, int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_25(int a[], int n, int x) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] == x) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 5, 2, 8, 2}; TEST_ASSERT_EQUAL_INT(3, bai8_25(a, 5, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai8_25(b, 3, 9));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={4}; TEST_ASSERT_EQUAL_INT(1, bai8_25(c, 1, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p26",
+      "session": 8,
+      "title": "26. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_26(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai8_26(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_26(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai8_26(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai8_26(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai8_26(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p27",
+      "session": 8,
+      "title": "27. Tính tích các chữ số của N",
+      "difficulty": "Khó",
+      "category": "Union & Enum",
+      "description": "<p>Viết hàm <code>int bai8_27(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai8_27(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai8_27(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai8_27(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai8_27(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai8_27(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s8_p28",
+      "session": 8,
+      "type": "quiz",
+      "title": "28. Trắc nghiệm đọc code: Vòng lặp & Điều kiện (#28)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra kết quả gì?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int s = 0;\nfor (int i = 1; i <= 6; i++) {\n    if (i == 2) continue;\n    s += i;\n}\nprintf(\"%d\", s);",
+      "options": [
+        "21",
+        "19",
+        "6",
+        "0"
+      ],
+      "correctIndex": 1,
+      "explanation": "continue bỏ qua bước i == 2, nên tổng giảm đi 2 còn 19.",
+      "testCases": []
+    },
+    {
+      "id": "s8_p29",
+      "session": 8,
+      "type": "quiz",
+      "title": "29. Trắc nghiệm đọc code: Bộ nhớ & Con trỏ (#29)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra giá trị nào?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int v = 11;\nint *p = &v;\n*p *= 2;\nprintf(\"%d\", v);",
+      "options": [
+        "11",
+        "22",
+        "8",
+        "Lỗi biên dịch"
+      ],
+      "correctIndex": 1,
+      "explanation": "p trỏ tới v nên *p *= 2 nhân đôi giá trị v thành 22.",
+      "testCases": []
+    },
+    {
+      "id": "s8_p30",
+      "session": 8,
+      "type": "quiz",
+      "title": "30. Trắc nghiệm đọc code: Toán tử & Biến (#30)",
+      "difficulty": "Khó",
+      "category": "Trắc nghiệm đọc code",
+      "description": "<p>Đoạn code C sau đây in ra giá trị nào?</p>",
+      "inputSpec": "Đoạn mã C cho sẵn.",
+      "outputSpec": "Chọn đáp án A, B, C hoặc D.",
+      "hint": "Theo dõi giá trị từng biến qua từng dòng lệnh.",
+      "quizCode": "int x = 4, y = 3;\nint z = (x++ * 2) + y;\nprintf(\"%d %d\", x, z);",
+      "options": [
+        "5 11",
+        "4 11",
+        "5 13",
+        "6 11"
+      ],
+      "correctIndex": 0,
+      "explanation": "x++ dùng giá trị cũ (4) để tính z = 4*2 + 3 = 11, sau đó x tăng lên 5.",
+      "testCases": []
+    }
+  ]
+}

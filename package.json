@@ -1,0 +1,9 @@
+{
+  "name": "c-lab-judge",
+  "version": "1.0.0",
+  "description": "C/C++ Auto-Grading Judge Server with GCC/G++ and Unity Test",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

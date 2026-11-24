@@ -1,0 +1,816 @@
+{
+  "session": 4,
+  "title": "Buổi 4: Mảng 1 chiều & Đa chiều",
+  "problems": [
+    {
+      "id": "s4_p1",
+      "session": 4,
+      "title": "1. Tổng các phần tử mảng",
+      "difficulty": "Dễ",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int tongMang(int a[], int n)</code> trả về tổng n phần tử.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng mảng",
+      "hint": "Duyệt i từ 0 đến n-1",
+      "starterCode": "#include <stdio.h>\n\nint tongMang(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint tongMang(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i++) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {1, 2, 3, 4}; TEST_ASSERT_EQUAL_INT(10, tongMang(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {-5, 5, 10}; TEST_ASSERT_EQUAL_INT(10, tongMang(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {42}; TEST_ASSERT_EQUAL_INT(42, tongMang(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p2",
+      "session": 4,
+      "title": "2. Phần tử lớn nhất mảng",
+      "difficulty": "Dễ",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int maxMang(int a[], int n)</code> tìm giá trị lớn nhất.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Giá trị max",
+      "hint": "Gán max = a[0] rồi so sánh",
+      "starterCode": "#include <stdio.h>\n\nint maxMang(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint maxMang(int a[], int n) {\n    int m = a[0];\n    for (int i = 1; i < n; i++) if (a[i] > m) m = a[i];\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {3, 9, 2, 15}; TEST_ASSERT_EQUAL_INT(15, maxMang(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {-10, -3, -20}; TEST_ASSERT_EQUAL_INT(-3, maxMang(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {7}; TEST_ASSERT_EQUAL_INT(7, maxMang(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p3",
+      "session": 4,
+      "title": "3. Đếm số chẵn trong mảng",
+      "difficulty": "Dễ",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int demChan(int a[], int n)</code> đếm số lượng phần tử chẵn.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số lượng số chẵn",
+      "hint": "Kiểm tra a[i] % 2 == 0",
+      "starterCode": "#include <stdio.h>\n\nint demChan(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint demChan(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] % 2 == 0) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {1, 2, 3, 4, 6}; TEST_ASSERT_EQUAL_INT(3, demChan(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {1, 3, 5}; TEST_ASSERT_EQUAL_INT(0, demChan(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {0, 2}; TEST_ASSERT_EQUAL_INT(2, demChan(c, 2));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p4",
+      "session": 4,
+      "title": "4. Tìm kiếm tuyến tính",
+      "difficulty": "Dễ",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int timKiem(int a[], int n, int x)</code> trả về vị trí đầu tiên của x, không thấy trả về -1.</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Chỉ số hoặc -1",
+      "hint": "Duyệt i từ 0 đến n-1",
+      "starterCode": "#include <stdio.h>\n\nint timKiem(int a[], int n, int x) {\n    return -1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint timKiem(int a[], int n, int x) {\n    for (int i = 0; i < n; i++) if (a[i] == x) return i;\n    return -1;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {10, 20, 30}; TEST_ASSERT_EQUAL_INT(1, timKiem(a, 3, 20));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {10, 20, 30}; TEST_ASSERT_EQUAL_INT(-1, timKiem(b, 3, 99));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {5, 5, 5}; TEST_ASSERT_EQUAL_INT(0, timKiem(c, 3, 5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p5",
+      "session": 4,
+      "title": "5. Kiểm tra mảng tăng dần",
+      "difficulty": "Trung bình",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int laTangDan(int a[], int n)</code> trả về 1 nếu a[i] <= a[i+1] với mọi i, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Nếu tồn tại a[i] > a[i+1] trả về 0",
+      "starterCode": "#include <stdio.h>\n\nint laTangDan(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint laTangDan(int a[], int n) {\n    for (int i = 0; i < n - 1; i++) if (a[i] > a[i + 1]) return 0;\n    return 1;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {1, 2, 2, 5}; TEST_ASSERT_EQUAL_INT(1, laTangDan(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {1, 4, 2}; TEST_ASSERT_EQUAL_INT(0, laTangDan(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {9}; TEST_ASSERT_EQUAL_INT(1, laTangDan(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p6",
+      "session": 4,
+      "title": "6. Kiểm tra mảng đối xứng",
+      "difficulty": "Trung bình",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int doiXung(int a[], int n)</code> trả về 1 nếu mảng đối xứng (palindrome), ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "So sánh a[i] với a[n - 1 - i]",
+      "starterCode": "#include <stdio.h>\n\nint doiXung(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint doiXung(int a[], int n) {\n    for (int i = 0; i < n / 2; i++) if (a[i] != a[n - 1 - i]) return 0;\n    return 1;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {1, 2, 3, 2, 1}; TEST_ASSERT_EQUAL_INT(1, doiXung(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, doiXung(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {4, 4}; TEST_ASSERT_EQUAL_INT(1, doiXung(c, 2));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p7",
+      "session": 4,
+      "title": "7. Phần tử lớn thứ nhì",
+      "difficulty": "Trung bình",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int lonThuNhi(int a[], int n)</code> tìm giá trị lớn thứ hai (khác max) trong mảng.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Giá trị lớn thứ 2",
+      "hint": "Duyệt tìm max1 và max2",
+      "starterCode": "#include <stdio.h>\n\nint lonThuNhi(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint lonThuNhi(int a[], int n) {\n    int m1 = -1000000, m2 = -1000000;\n    for (int i = 0; i < n; i++) {\n        if (a[i] > m1) { m2 = m1; m1 = a[i]; }\n        else if (a[i] > m2 && a[i] < m1) m2 = a[i];\n    }\n    return m2;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {10, 5, 20, 15}; TEST_ASSERT_EQUAL_INT(15, lonThuNhi(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {5, 1, 5, 3}; TEST_ASSERT_EQUAL_INT(3, lonThuNhi(b, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {-1, -5, -2}; TEST_ASSERT_EQUAL_INT(-2, lonThuNhi(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p8",
+      "session": 4,
+      "title": "8. Tổng đường chéo chính ma trận",
+      "difficulty": "Khó",
+      "category": "Mảng (Array)",
+      "description": "<p>Ma trận vuông n x n được trải phẳng thành mảng 1 chiều <code>a[n*n]</code> (phần tử (i,j) ở <code>a[i*n + j]</code>). Tính tổng đường chéo chính.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng đường chéo chính",
+      "hint": "Cộng a[i * n + i] với i = 0..n-1",
+      "starterCode": "#include <stdio.h>\n\nint tongCheoChinh(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint tongCheoChinh(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i++) s += a[i * n + i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {1, 2, 3, 4}; TEST_ASSERT_EQUAL_INT(5, tongCheoChinh(a, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {1,0,0, 0,2,0, 0,0,3}; TEST_ASSERT_EQUAL_INT(6, tongCheoChinh(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {9}; TEST_ASSERT_EQUAL_INT(9, tongCheoChinh(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p9",
+      "session": 4,
+      "title": "9. Sắp xếp tăng dần và trả về phần tử thứ k",
+      "difficulty": "Khó",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int phanTuThuK(int a[], int n, int k)</code> sắp xếp mảng tăng dần rồi trả về <code>a[k]</code>.</p>",
+      "inputSpec": "int a[], int n, int k",
+      "outputSpec": "a[k] sau khi sắp xếp",
+      "hint": "Dùng Bubble Sort hoặc Interchange Sort",
+      "starterCode": "#include <stdio.h>\n\nint phanTuThuK(int a[], int n, int k) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint phanTuThuK(int a[], int n, int k) {\n    for (int i = 0; i < n - 1; i++) {\n        for (int j = i + 1; j < n; j++) {\n            if (a[i] > a[j]) { int t = a[i]; a[i] = a[j]; a[j] = t; }\n        }\n    }\n    return a[k];\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {5, 1, 4, 2, 8}; TEST_ASSERT_EQUAL_INT(2, phanTuThuK(a, 5, 1));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {9, 3, 6}; TEST_ASSERT_EQUAL_INT(9, phanTuThuK(b, 3, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {4, 2}; TEST_ASSERT_EQUAL_INT(2, phanTuThuK(c, 2, 0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p10",
+      "session": 4,
+      "title": "10. Tổng dãy con liên tiếp lớn nhất",
+      "difficulty": "Khó",
+      "category": "Mảng (Array)",
+      "description": "<p>Viết hàm <code>int maxSubArray(int a[], int n)</code> tìm tổng lớn nhất của một đoạn con liên tiếp (Kadane).</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng đoạn con lớn nhất",
+      "hint": "Duy trì curSum và bestSum",
+      "starterCode": "#include <stdio.h>\n\nint maxSubArray(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint maxSubArray(int a[], int n) {\n    int best = a[0], cur = a[0];\n    for (int i = 1; i < n; i++) {\n        cur = cur + a[i] > a[i] ? cur + a[i] : a[i];\n        if (cur > best) best = cur;\n    }\n    return best;\n}",
+      "testCases": [
+        {
+          "code": "int a[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4}; TEST_ASSERT_EQUAL_INT(6, maxSubArray(a, 9));",
+          "hidden": false
+        },
+        {
+          "code": "int b[] = {1, 2, 3}; TEST_ASSERT_EQUAL_INT(6, maxSubArray(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[] = {-5, -2, -8}; TEST_ASSERT_EQUAL_INT(-2, maxSubArray(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p11",
+      "session": 4,
+      "title": "11. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_11(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai4_11(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_11(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai4_11(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai4_11(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai4_11(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p12",
+      "session": 4,
+      "title": "12. Tính tích các chữ số của N",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_12(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai4_12(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_12(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai4_12(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_12(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai4_12(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p13",
+      "session": 4,
+      "title": "13. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_13(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai4_13(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_13(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai4_13(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai4_13(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai4_13(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p14",
+      "session": 4,
+      "title": "14. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_14(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai4_14(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_14(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai4_14(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai4_14(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai4_14(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p15",
+      "session": 4,
+      "title": "15. Tính biểu thức tuyến tính (Mảng 1 chiều & Đa chiều)",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_15(int x)</code> trả về <code>6 * x + 2</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "6*x + 2",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai4_15(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_15(int x) {\n    return 6 * x + 2;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(14, bai4_15(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai4_15(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(62, bai4_15(10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p16",
+      "session": 4,
+      "title": "16. Kiểm tra chia hết cho 6",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_16(int n)</code> trả về 1 nếu <code>n</code> chia hết cho 6, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Kiểm tra n % 6 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai4_16(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_16(int n) {\n    return n % 6 == 0 ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai4_16(18));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_16(19));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai4_16(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p17",
+      "session": 4,
+      "title": "17. Bình phương và cộng 4",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_17(int n)</code> trả về <code>n * n + 4</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "n*n + 4",
+      "hint": "Tính n * n rồi cộng",
+      "starterCode": "#include <stdio.h>\n\nint bai4_17(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_17(int n) {\n    return n * n + 4;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai4_17(3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, bai4_17(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(29, bai4_17(-5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p18",
+      "session": 4,
+      "title": "18. Hiệu tuyệt đối hai số",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_18(int a, int b)</code> trả về <code>|a - b|</code>.</p>",
+      "inputSpec": "int a, int b",
+      "outputSpec": "|a - b|",
+      "hint": "So sánh a > b",
+      "starterCode": "#include <stdio.h>\n\nint bai4_18(int a, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_18(int a, int b) {\n    return a > b ? a - b : b - a;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai4_18(3, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai4_18(9, 4));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_18(6, 6));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p19",
+      "session": 4,
+      "title": "19. Tổng các bội của 6 từ 1 đến N",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_19(int n)</code> tính tổng các số chia hết cho 6 trong [1, n].</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tổng bội số",
+      "hint": "Dùng for kiểm tra i % 6 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai4_19(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_19(int n) {\n    int s = 0;\n    for (int i = 1; i <= n; i++) if (i % 6 == 0) s += i;\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(6, bai4_19(10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_19(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(36, bai4_19(20));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p20",
+      "session": 4,
+      "title": "20. Đếm số phần tử lớn hơn 7 trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_20(int a[], int n)</code> đếm số phần tử <code>> 7</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số phần tử > 7",
+      "hint": "Duyệt mảng và đếm",
+      "starterCode": "#include <stdio.h>\n\nint bai4_20(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_20(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] > 7) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 7, 9, 12}; TEST_ASSERT_EQUAL_INT(2, bai4_20(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 1}; TEST_ASSERT_EQUAL_INT(0, bai4_20(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={8}; TEST_ASSERT_EQUAL_INT(1, bai4_20(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p21",
+      "session": 4,
+      "title": "21. Tính lũy thừa x^6",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_21(int x)</code> tính <code>x</code> mũ 6 bằng vòng lặp.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "x^6",
+      "hint": "Nhân x đúng 6 lần",
+      "starterCode": "#include <stdio.h>\n\nint bai4_21(int x) {\n    return 1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_21(int x) {\n    int r = 1;\n    for (int i = 0; i < 6; i++) r *= x;\n    return r;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(64, bai4_21(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai4_21(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(729, bai4_21(3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p22",
+      "session": 4,
+      "title": "22. Tìm chữ số lớn nhất của số nguyên dương",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_22(int n)</code> trả về chữ số lớn nhất trong số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Chữ số lớn nhất",
+      "hint": "Tách từng chữ số bằng % 10 và / 10",
+      "starterCode": "#include <stdio.h>\n\nint bai4_22(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_22(int n) {\n    int m = 0;\n    while (n > 0) { int d = n % 10; if (d > m) m = d; n /= 10; }\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai4_22(3921));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai4_22(500));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai4_22(7));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p23",
+      "session": 4,
+      "title": "23. Tổng các phần tử ở vị trí chẵn",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_23(int a[], int n)</code> tính tổng các <code>a[i]</code> với <code>i</code> chẵn (0, 2, 4...).</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng vị trí chẵn",
+      "hint": "Bước nhảy i += 2",
+      "starterCode": "#include <stdio.h>\n\nint bai4_23(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_23(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i += 2) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 10, 2, 20, 3}; TEST_ASSERT_EQUAL_INT(6, bai4_23(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={5, 9}; TEST_ASSERT_EQUAL_INT(5, bai4_23(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={7}; TEST_ASSERT_EQUAL_INT(7, bai4_23(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p24",
+      "session": 4,
+      "title": "24. Kiểm tra số đối xứng (Palindrome)",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_24(int n)</code> trả về 1 nếu số nguyên dương <code>n</code> đọc xuôi ngược giống nhau, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Đảo ngược số rồi so sánh với ban đầu",
+      "starterCode": "#include <stdio.h>\n\nint bai4_24(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_24(int n) {\n    int orig = n, rev = 0;\n    while (n > 0) { rev = rev * 10 + n % 10; n /= 10; }\n    return orig == rev ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai4_24(121));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_24(123));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai4_24(1221));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p25",
+      "session": 4,
+      "title": "25. Đếm số lần xuất hiện của X trong mảng",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_25(int a[], int n, int x)</code> đếm số lần <code>x</code> xuất hiện.</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Số lần xuất hiện",
+      "hint": "Duyệt a[i] == x",
+      "starterCode": "#include <stdio.h>\n\nint bai4_25(int a[], int n, int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_25(int a[], int n, int x) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] == x) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 5, 2, 8, 2}; TEST_ASSERT_EQUAL_INT(3, bai4_25(a, 5, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai4_25(b, 3, 9));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={4}; TEST_ASSERT_EQUAL_INT(1, bai4_25(c, 1, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p26",
+      "session": 4,
+      "title": "26. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_26(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai4_26(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_26(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai4_26(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai4_26(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai4_26(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p27",
+      "session": 4,
+      "title": "27. Tính tích các chữ số của N",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_27(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai4_27(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_27(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai4_27(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai4_27(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai4_27(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p28",
+      "session": 4,
+      "title": "28. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_28(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai4_28(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_28(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai4_28(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai4_28(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai4_28(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p29",
+      "session": 4,
+      "title": "29. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_29(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai4_29(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_29(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai4_29(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai4_29(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai4_29(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s4_p30",
+      "session": 4,
+      "title": "30. Tính biểu thức tuyến tính (Mảng 1 chiều & Đa chiều)",
+      "difficulty": "Khó",
+      "category": "Mảng 1 chiều & Đa chiều",
+      "description": "<p>Viết hàm <code>int bai4_30(int x)</code> trả về <code>6 * x + 3</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "6*x + 3",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai4_30(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai4_30(int x) {\n    return 6 * x + 3;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(15, bai4_30(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai4_30(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(63, bai4_30(10));",
+          "hidden": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+services:
+  c-lab-judge:
+    build: .
+    container_name: c-lab-judge
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./storage:/app/storage
+    environment:
+      - PORT=3000
+    mem_limit: 512m
+    cpus: 1.0

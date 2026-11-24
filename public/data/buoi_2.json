@@ -1,0 +1,816 @@
+{
+  "session": 2,
+  "title": "Buổi 2: Rẽ nhánh if-else & switch-case",
+  "problems": [
+    {
+      "id": "s2_p1",
+      "session": 2,
+      "title": "1. Kiểm tra số dương",
+      "difficulty": "Dễ",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int laSoDuong(int n)</code> trả về 1 nếu <code>n > 0</code>, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Dùng if (n > 0)",
+      "starterCode": "#include <stdio.h>\n\nint laSoDuong(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint laSoDuong(int n) {\n    return n > 0 ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laSoDuong(5));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laSoDuong(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laSoDuong(-3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p2",
+      "session": 2,
+      "title": "2. Giá trị tuyệt đối",
+      "difficulty": "Dễ",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int triTuyetDoi(int n)</code> trả về |n|.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "|n|",
+      "hint": "Nếu n < 0 trả về -n",
+      "starterCode": "#include <stdio.h>\n\nint triTuyetDoi(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint triTuyetDoi(int n) {\n    return n < 0 ? -n : n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, triTuyetDoi(-7));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, triTuyetDoi(5));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, triTuyetDoi(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p3",
+      "session": 2,
+      "title": "3. Số lớn nhất trong 3 số",
+      "difficulty": "Dễ",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int max3(int a, int b, int c)</code> trả về số lớn nhất.</p>",
+      "inputSpec": "int a, int b, int c",
+      "outputSpec": "Số lớn nhất",
+      "hint": "So sánh lần lượt với biến max",
+      "starterCode": "#include <stdio.h>\n\nint max3(int a, int b, int c) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint max3(int a, int b, int c) {\n    int m = a;\n    if (b > m) m = b;\n    if (c > m) m = c;\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, max3(3, 9, 5));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(-1, max3(-5, -1, -9));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(10, max3(10, 10, 2));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p4",
+      "session": 2,
+      "title": "4. Xếp loại học lực",
+      "difficulty": "Dễ",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int xepLoai(int diem)</code>: >=80 trả về 1 (Giỏi), >=65 trả về 2 (Khá), >=50 trả về 3 (TB), <50 trả về 4 (Yếu).</p>",
+      "inputSpec": "int diem (0..100)",
+      "outputSpec": "1, 2, 3 hoặc 4",
+      "hint": "Dùng bậc thang if - else if",
+      "starterCode": "#include <stdio.h>\n\nint xepLoai(int diem) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint xepLoai(int diem) {\n    if (diem >= 80) return 1;\n    if (diem >= 65) return 2;\n    if (diem >= 50) return 3;\n    return 4;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, xepLoai(85));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, xepLoai(70));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, xepLoai(40));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p5",
+      "session": 2,
+      "title": "5. Số ngày trong tháng (switch-case)",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int soNgay(int thang)</code> trả về số ngày của tháng (1..12, tháng 2 lấy 28 ngày). Sai trả về -1.</p>",
+      "inputSpec": "int thang",
+      "outputSpec": "28, 30, 31 hoặc -1",
+      "hint": "Dùng switch (thang)",
+      "starterCode": "#include <stdio.h>\n\nint soNgay(int thang) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint soNgay(int thang) {\n    switch (thang) {\n        case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31;\n        case 4: case 6: case 9: case 11: return 30;\n        case 2: return 28;\n        default: return -1;\n    }\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(31, soNgay(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(28, soNgay(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(30, soNgay(4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p6",
+      "session": 2,
+      "title": "6. Kiểm tra năm nhuận",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int laNamNhuan(int nam)</code> trả về 1 nếu là năm nhuận, 0 nếu không.</p>",
+      "inputSpec": "int nam",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Chia hết 400 hoặc (chia hết 4 và không chia hết 100)",
+      "starterCode": "#include <stdio.h>\n\nint laNamNhuan(int nam) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint laNamNhuan(int nam) {\n    if ((nam % 400 == 0) || (nam % 4 == 0 && nam % 100 != 0)) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laNamNhuan(2024));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laNamNhuan(1900));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laNamNhuan(2000));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p7",
+      "session": 2,
+      "title": "7. Máy tính đơn giản (switch-case)",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int tinhToan(int a, int b, char op)</code> thực hiện +, -, *, / (chia nguyên). Phép tính lạ trả về 0.</p>",
+      "inputSpec": "int a, int b, char op",
+      "outputSpec": "Kết quả phép tính",
+      "hint": "Dùng switch(op)",
+      "starterCode": "#include <stdio.h>\n\nint tinhToan(int a, int b, char op) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint tinhToan(int a, int b, char op) {\n    switch (op) {\n        case '+': return a + b;\n        case '-': return a - b;\n        case '*': return a * b;\n        case '/': return b != 0 ? a / b : 0;\n        default: return 0;\n    }\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(15, tinhToan(10, 5, '+'));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(50, tinhToan(10, 5, '*'));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, tinhToan(10, 5, '/'));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p8",
+      "session": 2,
+      "title": "8. Kiểm tra tam giác hợp lệ",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int laTamGiac(int a, int b, int c)</code> trả về 1 nếu a, b, c lập thành tam giác, ngược lại 0.</p>",
+      "inputSpec": "int a, int b, int c",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Tổng 2 cạnh bất kỳ > cạnh còn lại và > 0",
+      "starterCode": "#include <stdio.h>\n\nint laTamGiac(int a, int b, int c) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint laTamGiac(int a, int b, int c) {\n    if (a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, laTamGiac(3, 4, 5));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laTamGiac(1, 2, 3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, laTamGiac(0, 4, 5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p9",
+      "session": 2,
+      "title": "9. Phân loại tam giác",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int loaiTamGiac(int a, int b, int c)</code>: 0 nếu không hợp lệ, 3 nếu đều, 2 nếu cân, 1 nếu thường.</p>",
+      "inputSpec": "int a, int b, int c",
+      "outputSpec": "0, 1, 2 hoặc 3",
+      "hint": "Kiểm tra hợp lệ -> đều -> cân -> thường",
+      "starterCode": "#include <stdio.h>\n\nint loaiTamGiac(int a, int b, int c) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint loaiTamGiac(int a, int b, int c) {\n    if (!(a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a)) return 0;\n    if (a == b && b == c) return 3;\n    if (a == b || b == c || a == c) return 2;\n    return 1;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, loaiTamGiac(5, 5, 5));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, loaiTamGiac(5, 5, 3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, loaiTamGiac(3, 4, 5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p10",
+      "session": 2,
+      "title": "10. Tính tiền điện bậc thang",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int tienDien(int kwh)</code>: 50 số đầu 1500đ/số, từ số 51 trở đi 2000đ/số.</p>",
+      "inputSpec": "int kwh",
+      "outputSpec": "Tổng tiền điện",
+      "hint": "Tách kwh <= 50 và kwh > 50",
+      "starterCode": "#include <stdio.h>\n\nint tienDien(int kwh) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint tienDien(int kwh) {\n    if (kwh <= 0) return 0;\n    if (kwh <= 50) return kwh * 1500;\n    return 50 * 1500 + (kwh - 50) * 2000;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(45000, tienDien(30));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(95000, tienDien(60));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(75000, tienDien(50));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p11",
+      "session": 2,
+      "title": "11. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_11(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai2_11(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_11(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai2_11(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai2_11(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai2_11(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p12",
+      "session": 2,
+      "title": "12. Tính tích các chữ số của N",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_12(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai2_12(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_12(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai2_12(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_12(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai2_12(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p13",
+      "session": 2,
+      "title": "13. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_13(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai2_13(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_13(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai2_13(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai2_13(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai2_13(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p14",
+      "session": 2,
+      "title": "14. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_14(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai2_14(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_14(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai2_14(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai2_14(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai2_14(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p15",
+      "session": 2,
+      "title": "15. Tính biểu thức tuyến tính (Rẽ nhánh if-else & switch)",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_15(int x)</code> trả về <code>4 * x + 2</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "4*x + 2",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai2_15(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_15(int x) {\n    return 4 * x + 2;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(10, bai2_15(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai2_15(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(42, bai2_15(10));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p16",
+      "session": 2,
+      "title": "16. Kiểm tra chia hết cho 4",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_16(int n)</code> trả về 1 nếu <code>n</code> chia hết cho 4, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Kiểm tra n % 4 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai2_16(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_16(int n) {\n    return n % 4 == 0 ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai2_16(12));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_16(13));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai2_16(0));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p17",
+      "session": 2,
+      "title": "17. Bình phương và cộng 4",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_17(int n)</code> trả về <code>n * n + 4</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "n*n + 4",
+      "hint": "Tính n * n rồi cộng",
+      "starterCode": "#include <stdio.h>\n\nint bai2_17(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_17(int n) {\n    return n * n + 4;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai2_17(3));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(4, bai2_17(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(29, bai2_17(-5));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p18",
+      "session": 2,
+      "title": "18. Hiệu tuyệt đối hai số",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_18(int a, int b)</code> trả về <code>|a - b|</code>.</p>",
+      "inputSpec": "int a, int b",
+      "outputSpec": "|a - b|",
+      "hint": "So sánh a > b",
+      "starterCode": "#include <stdio.h>\n\nint bai2_18(int a, int b) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_18(int a, int b) {\n    return a > b ? a - b : b - a;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai2_18(3, 10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai2_18(9, 4));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_18(6, 6));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p19",
+      "session": 2,
+      "title": "19. Tổng các bội của 4 từ 1 đến N",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_19(int n)</code> tính tổng các số chia hết cho 4 trong [1, n].</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tổng bội số",
+      "hint": "Dùng for kiểm tra i % 4 == 0",
+      "starterCode": "#include <stdio.h>\n\nint bai2_19(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_19(int n) {\n    int s = 0;\n    for (int i = 1; i <= n; i++) if (i % 4 == 0) s += i;\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(12, bai2_19(10));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_19(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(60, bai2_19(20));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p20",
+      "session": 2,
+      "title": "20. Đếm số phần tử lớn hơn 7 trong mảng",
+      "difficulty": "Trung bình",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_20(int a[], int n)</code> đếm số phần tử <code>> 7</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số phần tử > 7",
+      "hint": "Duyệt mảng và đếm",
+      "starterCode": "#include <stdio.h>\n\nint bai2_20(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_20(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] > 7) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 7, 9, 12}; TEST_ASSERT_EQUAL_INT(2, bai2_20(a, 4));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 1}; TEST_ASSERT_EQUAL_INT(0, bai2_20(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={8}; TEST_ASSERT_EQUAL_INT(1, bai2_20(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p21",
+      "session": 2,
+      "title": "21. Tính lũy thừa x^4",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_21(int x)</code> tính <code>x</code> mũ 4 bằng vòng lặp.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "x^4",
+      "hint": "Nhân x đúng 4 lần",
+      "starterCode": "#include <stdio.h>\n\nint bai2_21(int x) {\n    return 1;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_21(int x) {\n    int r = 1;\n    for (int i = 0; i < 4; i++) r *= x;\n    return r;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(16, bai2_21(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai2_21(1));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(81, bai2_21(3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p22",
+      "session": 2,
+      "title": "22. Tìm chữ số lớn nhất của số nguyên dương",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_22(int n)</code> trả về chữ số lớn nhất trong số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Chữ số lớn nhất",
+      "hint": "Tách từng chữ số bằng % 10 và / 10",
+      "starterCode": "#include <stdio.h>\n\nint bai2_22(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_22(int n) {\n    int m = 0;\n    while (n > 0) { int d = n % 10; if (d > m) m = d; n /= 10; }\n    return m;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai2_22(3921));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(5, bai2_22(500));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(7, bai2_22(7));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p23",
+      "session": 2,
+      "title": "23. Tổng các phần tử ở vị trí chẵn",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_23(int a[], int n)</code> tính tổng các <code>a[i]</code> với <code>i</code> chẵn (0, 2, 4...).</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Tổng vị trí chẵn",
+      "hint": "Bước nhảy i += 2",
+      "starterCode": "#include <stdio.h>\n\nint bai2_23(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_23(int a[], int n) {\n    int s = 0;\n    for (int i = 0; i < n; i += 2) s += a[i];\n    return s;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, 10, 2, 20, 3}; TEST_ASSERT_EQUAL_INT(6, bai2_23(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={5, 9}; TEST_ASSERT_EQUAL_INT(5, bai2_23(b, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={7}; TEST_ASSERT_EQUAL_INT(7, bai2_23(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p24",
+      "session": 2,
+      "title": "24. Kiểm tra số đối xứng (Palindrome)",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_24(int n)</code> trả về 1 nếu số nguyên dương <code>n</code> đọc xuôi ngược giống nhau, ngược lại 0.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Đảo ngược số rồi so sánh với ban đầu",
+      "starterCode": "#include <stdio.h>\n\nint bai2_24(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_24(int n) {\n    int orig = n, rev = 0;\n    while (n > 0) { rev = rev * 10 + n % 10; n /= 10; }\n    return orig == rev ? 1 : 0;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai2_24(121));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_24(123));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(1, bai2_24(1221));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p25",
+      "session": 2,
+      "title": "25. Đếm số lần xuất hiện của X trong mảng",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_25(int a[], int n, int x)</code> đếm số lần <code>x</code> xuất hiện.</p>",
+      "inputSpec": "int a[], int n, int x",
+      "outputSpec": "Số lần xuất hiện",
+      "hint": "Duyệt a[i] == x",
+      "starterCode": "#include <stdio.h>\n\nint bai2_25(int a[], int n, int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_25(int a[], int n, int x) {\n    int c = 0;\n    for (int i = 0; i < n; i++) if (a[i] == x) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 5, 2, 8, 2}; TEST_ASSERT_EQUAL_INT(3, bai2_25(a, 5, 2));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai2_25(b, 3, 9));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={4}; TEST_ASSERT_EQUAL_INT(1, bai2_25(c, 1, 4));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p26",
+      "session": 2,
+      "title": "26. Tìm ước số nhỏ nhất lớn hơn 1",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_26(int n)</code> trả về ước nguyên dương nhỏ nhất > 1 của <code>n</code> (n >= 2).</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Ước nhỏ nhất > 1",
+      "hint": "Duyệt từ 2 đến sqrt(n)",
+      "starterCode": "#include <stdio.h>\n\nint bai2_26(int n) {\n    return n;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_26(int n) {\n    for (int i = 2; i * i <= n; i++) if (n % i == 0) return i;\n    return n;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai2_26(15));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(2, bai2_26(14));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(13, bai2_26(13));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p27",
+      "session": 2,
+      "title": "27. Tính tích các chữ số của N",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_27(int n)</code> trả về tích các chữ số của số nguyên dương <code>n</code>.</p>",
+      "inputSpec": "int n",
+      "outputSpec": "Tích chữ số",
+      "hint": "Nhân dồn n % 10",
+      "starterCode": "#include <stdio.h>\n\nint bai2_27(int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_27(int n) {\n    if (n == 0) return 0;\n    int p = 1;\n    while (n > 0) { p *= (n % 10); n /= 10; }\n    return p;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(24, bai2_27(234));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(0, bai2_27(105));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(9, bai2_27(9));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p28",
+      "session": 2,
+      "title": "28. Kiểm tra mảng có chứa phần tử âm",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_28(int a[], int n)</code> trả về 1 nếu có ít nhất một số âm, ngược lại 0.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "1 hoặc 0",
+      "hint": "Gặp a[i] < 0 trả về 1 ngay",
+      "starterCode": "#include <stdio.h>\n\nint bai2_28(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_28(int a[], int n) {\n    for (int i = 0; i < n; i++) if (a[i] < 0) return 1;\n    return 0;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={1, -3, 5}; TEST_ASSERT_EQUAL_INT(1, bai2_28(a, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={0, 2, 4}; TEST_ASSERT_EQUAL_INT(0, bai2_28(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={-1}; TEST_ASSERT_EQUAL_INT(1, bai2_28(c, 1));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p29",
+      "session": 2,
+      "title": "29. Đếm số cặp nghịch thế trong mảng",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_29(int a[], int n)</code> đếm số cặp <code>(i, j)</code> với <code>i < j</code> mà <code>a[i] > a[j]</code>.</p>",
+      "inputSpec": "int a[], int n",
+      "outputSpec": "Số cặp nghịch thế",
+      "hint": "Dùng 2 vòng lặp lồng nhau i < j",
+      "starterCode": "#include <stdio.h>\n\nint bai2_29(int a[], int n) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_29(int a[], int n) {\n    int c = 0;\n    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) if (a[i] > a[j]) c++;\n    return c;\n}",
+      "testCases": [
+        {
+          "code": "int a[]={2, 4, 1, 3, 5}; TEST_ASSERT_EQUAL_INT(3, bai2_29(a, 5));",
+          "hidden": false
+        },
+        {
+          "code": "int b[]={1, 2, 3}; TEST_ASSERT_EQUAL_INT(0, bai2_29(b, 3));",
+          "hidden": false
+        },
+        {
+          "code": "int c[]={3, 2, 1}; TEST_ASSERT_EQUAL_INT(3, bai2_29(c, 3));",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "s2_p30",
+      "session": 2,
+      "title": "30. Tính biểu thức tuyến tính (Rẽ nhánh if-else & switch)",
+      "difficulty": "Khó",
+      "category": "Rẽ nhánh if-else & switch",
+      "description": "<p>Viết hàm <code>int bai2_30(int x)</code> trả về <code>4 * x + 3</code>.</p>",
+      "inputSpec": "int x",
+      "outputSpec": "4*x + 3",
+      "hint": "Nhân và cộng trực tiếp",
+      "starterCode": "#include <stdio.h>\n\nint bai2_30(int x) {\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint bai2_30(int x) {\n    return 4 * x + 3;\n}",
+      "testCases": [
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(11, bai2_30(2));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(3, bai2_30(0));",
+          "hidden": false
+        },
+        {
+          "code": "TEST_ASSERT_EQUAL_INT(43, bai2_30(10));",
+          "hidden": true
+        }
+      ]
+    }
+  ]
+}
